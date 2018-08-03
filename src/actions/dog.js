@@ -13,7 +13,7 @@ export const fetchDogSuccess = (dog) => ({
 
 export const ADOPT_DOG_REQUEST = 'ADOPT_DOG_REQUEST'
 export const deleteDogRequest = () => ({
-    type: ADOPT__REQUEST
+    type: ADOPT_DOG_REQUEST
 })
 
 export const ADOPT_DOG_SUCCESS = 'ADOPT_DOG_SUCCESS'
