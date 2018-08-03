@@ -24,5 +24,9 @@ const dogData = {
     story: 'Owner Passed away'
   };
 
-ReactDOM.render(<Dashboard catToAdopt={catData} dogToAdopt={dogData}/>, document.getElementById('root'));
+function onAdoptPet(pet){
+    console.log(`${pet.name} was adopted!`);
+}
+
+ReactDOM.render(<Dashboard catToAdopt={catData} dogToAdopt={dogData} onAdoptPet={onAdoptPet}/>, document.getElementById('root'));
 registerServiceWorker();
