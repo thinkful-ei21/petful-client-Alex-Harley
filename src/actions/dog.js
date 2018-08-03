@@ -29,7 +29,7 @@ export const deleteDogError = () => ({
 
 export const fetchDog = () => dispatch => {
     dispatch(fetchDogRequest())
-    fetch(`${API_BASE_URL}/dog`, {
+    fetch(`${API_BASE_URL}api/dog`, {
         method: 'GET'
     })
     .then(res => !res.ok ? Promise.reject(res.statusText) : res.json())
@@ -39,10 +39,11 @@ export const fetchDog = () => dispatch => {
 
 export const deleteDog = () => dispatch => {
     dispatch(deleteDogRequest())
-    fetch(`${API_BASE_URL}/dog`, {
+    fetch(`${API_BASE_URL}api/dog`, {
         method: 'DELETE'
     })
     .then(res => !res.ok ? Promise.reject(res.statusText) : res.json())
     .then(res => dispatch(deleteDogSuccess(res)))
+    .then(res => dispatch(fetchDog()))
     .catch(err => dispatch(deleteDogError(err)))
 }

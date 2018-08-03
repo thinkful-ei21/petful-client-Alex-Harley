@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import Dashboard from './Dashboard';
+import store from './store';
+import {Provider} from 'react-redux';
 
 const catData = {
     imageURL:'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg', 
@@ -28,5 +30,9 @@ function onAdoptPet(pet){
     console.log(`${pet.name} was adopted!`);
 }
 
-ReactDOM.render(<Dashboard catToAdopt={catData} dogToAdopt={dogData} onAdoptPet={onAdoptPet}/>, document.getElementById('root'));
+ReactDOM.render(
+<Provider store={store}>
+<Dashboard catToAdopt={catData} dogToAdopt={dogData} onAdoptPet={onAdoptPet}/>
+</Provider>
+, document.getElementById('root'));
 registerServiceWorker();

@@ -29,7 +29,7 @@ export const deleteCatError = () => ({
 
 export const fetchCat = () => dispatch => {
     dispatch(fetchCatRequest())
-    fetch(`${API_BASE_URL}/cat`, {
+    fetch(`${API_BASE_URL}api/cat`, {
         method: 'GET'
     })
     .then(res => !res.ok ? Promise.reject(res.statusText) : res.json())
@@ -39,10 +39,11 @@ export const fetchCat = () => dispatch => {
 
 export const deleteCat = () => dispatch => {
     dispatch(deleteCatRequest())
-    fetch(`${API_BASE_URL}/cat`, {
+    fetch(`${API_BASE_URL}api/cat`, {
         method: 'DELETE'
     })
     .then(res => !res.ok ? Promise.reject(res.statusText) : res.json())
     .then(res => dispatch(deleteCatSuccess(res)))
+    .then(res => dispatch(fetchCat()))
     .catch(err => dispatch(deleteCatError(err)))
 }

@@ -1,6 +1,9 @@
 import React from 'react';
+import deleteCat from '../actions/cat'
+import deleteDog from '../actions/dog'
+import {connect} from 'react-redux'
 
-export default function Pet(props) {
+export function Pet(props) {
     return (
     <section className="pet">
         <header>
@@ -19,8 +22,10 @@ export default function Pet(props) {
                 <dt className="term-story">Story</dt>
                 <dd className="def-story">{props.petToAdopt.story}</dd>
             </dl>
-            <button onClick={()=>props.onAdoptPet(props.petToAdopt)}>Adopt</button>
+            <button onClick={()=>props.adoptPet()}>Adopt</button>
         </main>
     </section>
     );
 }
+
+export default connect () (Pet)
