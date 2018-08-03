@@ -11,6 +11,17 @@ export const fetchCatSuccess = (cat) => ({
     cat
 })
 
+export const REPO_CAT_REQUEST = 'REPO_CAT_REQUEST'
+export const resetCatRequest = () => ({
+    type: REPO_CAT_REQUEST
+})
+
+export const REPO_CAT_SUCCESS = 'REPO_CAT_SUCCESS'
+export const resetCatSuccess = (cat) => ({
+    type: REPO_CAT_SUCCESS,
+    cat
+})
+
 export const ADOPT_CAT_REQUEST = 'ADOPT_CAT_REQUEST'
 export const deleteCatRequest = () => ({
     type: ADOPT_CAT_REQUEST
@@ -44,6 +55,17 @@ export const deleteCat = () => dispatch => {
     })
     .then(res => !res.ok ? Promise.reject(res.statusText) : res.json())
     .then(res => dispatch(deleteCatSuccess(res)))
+    .then(res => dispatch(fetchCat()))
+    .catch(err => dispatch(deleteCatError(err)))
+}
+
+export const resetCat = () => dispatch => {
+    dispatch(resetCatRequest())
+    fetch(`${API_BASE_URL}api/cat`, {
+        method: 'POST'
+    })
+    .then(res => !res.ok ? Promise.reject(res.statusText) : res.json())
+    .then(res => dispatch(resetCatSuccess(res)))
     .then(res => dispatch(fetchCat()))
     .catch(err => dispatch(deleteCatError(err)))
 }

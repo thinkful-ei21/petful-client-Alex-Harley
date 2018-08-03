@@ -1,6 +1,8 @@
 import {
     DISPLAY_CAT_REQUEST,
     DISPLAY_CAT_SUCCESS,
+    REPO_CAT_REQUEST,
+    REPO_CAT_SUCCESS,
     ADOPT_CAT_REQUEST,
     ADOPT_CAT_SUCCESS,
     ADOPT_CAT_ERROR,
@@ -18,6 +20,12 @@ export default function reducer(state = initialState, action) {
     }
     else if (action.type === DISPLAY_CAT_SUCCESS) {
         return {...state, currentCat: action.cat, error: null, loading: false}
+    }
+    else if (action.type === REPO_CAT_REQUEST) {
+        return {...state, loading: true}
+    }
+    else if (action.type === REPO_CAT_SUCCESS) {
+        return {...state, loading: false}
     }
     else if (action.type === ADOPT_CAT_REQUEST) {
         return {...state, loading: true}

@@ -11,6 +11,17 @@ export const fetchDogSuccess = (dog) => ({
     dog
 })
 
+export const REPO_DOG_REQUEST = 'REPO_DOG_REQUEST'
+export const resetDogRequest = () => ({
+    type: REPO_DOG_REQUEST
+})
+
+export const REPO_DOG_SUCCESS = 'REPO_DOG_SUCCESS'
+export const resetDogSuccess = (dog) => ({
+    type: REPO_DOG_SUCCESS,
+    dog
+})
+
 export const ADOPT_DOG_REQUEST = 'ADOPT_DOG_REQUEST'
 export const deleteDogRequest = () => ({
     type: ADOPT_DOG_REQUEST
@@ -44,6 +55,17 @@ export const deleteDog = () => dispatch => {
     })
     .then(res => !res.ok ? Promise.reject(res.statusText) : res.json())
     .then(res => dispatch(deleteDogSuccess(res)))
+    .then(res => dispatch(fetchDog()))
+    .catch(err => dispatch(deleteDogError(err)))
+}
+
+export const resetDog = () => dispatch => {
+    dispatch(resetDogRequest())
+    fetch(`${API_BASE_URL}api/dog`, {
+        method: 'POST'
+    })
+    .then(res => !res.ok ? Promise.reject(res.statusText) : res.json())
+    .then(res => dispatch(resetDogSuccess(res)))
     .then(res => dispatch(fetchDog()))
     .catch(err => dispatch(deleteDogError(err)))
 }
