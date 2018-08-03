@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 
 export function Pet(props) {
     return (
-    <section className="pet">
+    <section className="pet-class">
         <header>
             <h2 className="pet-name">{props.petToAdopt.name}</h2>
             <img src={props.petToAdopt.imageURL} alt={props.petToAdopt.imageDescription}></img>
